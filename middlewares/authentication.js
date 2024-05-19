@@ -11,7 +11,6 @@ function checkForAuthenticationToken() {
       const userPayload = validateToken(token);
       const userData = await UserModel.findOne({ _id: userPayload.userId});
       req.body.user = userData;
-      console.log(`user data in middleware ${userData}`);
     } catch (error) {
       console.log("error in token validation ", error);
     }
