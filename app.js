@@ -6,6 +6,7 @@ const fs = require('fs');
 
 
 const userRouterV1 = require('./routes/userRouteV1');
+const childRouterV1 = require('./routes/childRouteV1');
 
 const { checkForAuthenticationToken } = require('./middlewares/authentication');
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 
 // User - Route
 app.use('/api/v1/user', checkForAuthenticationToken(), userRouterV1);
+app.use('/api/v1/child', childRouterV1);
 
 
 

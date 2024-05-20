@@ -19,8 +19,20 @@ function checkForAuthenticationToken() {
 }
 
 function restrictUserWithoutToken(req, res,next) {
-  if(!req.headers?.authorization) return res.json({msg: "You are not authorized user"});
-  return next();
+  return async (req, res, next) =>{
+    if(!req.headers?.authorization) return res.json({msg: "You are not authorized user"});
+    try {
+      const bearerToken = req.headers.authorization;
+      const token = bearerToken.split(" ")[1];
+      const userPayload = validateToken(token);
+      const userData = await UserModel.findOne({ _id: userPayload.userId});
+      if(!userData) return res.json({msg: "You are not authorized user"})
+      req.body.user = userData;
+    } catch (error) {
+      return res.json({msg: `error: ${error}`})
+    }
+    return next();
+  }
 }
 
 module.exports = {

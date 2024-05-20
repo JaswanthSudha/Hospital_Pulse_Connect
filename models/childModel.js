@@ -9,6 +9,11 @@ const childSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  parentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "UserModel",
+    required: true,
+  },
   dateOfBirth: {
     type: Date,
     required: true
@@ -18,28 +23,27 @@ const childSchema = new mongoose.Schema({
     enum: ['male', 'female', 'other'],
     required: true
   },
-  // Calculating age dynamically
-  age: {
-    type: Number,
-    get: function() {
-      // Calculate age from date of birth
-      const dob = this.dateOfBirth;
-      if (!dob) return null;
-
-      const now = new Date();
-      const age = now.getFullYear() - dob.getFullYear();
-      const monthDiff = now.getMonth() - dob.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < dob.getDate())) {
-        return age - 1;
-      }
-      return age;
-    },
-    set: function(value) {
-      // Not allowing to set age directly
-      return value;
-    }
-  }
+  
+}, {
+  timestamps:true,
+  toJSON: { virtuals: true }, // Include virtuals when converting to JSON
+  toObject: { virtuals: true } // Include virtuals when converting to objects
 });
+// Virtual property for age in years and months
+childSchema.virtual('age').get(function() {
+  const dob = this.dateOfBirth;
+  if (!dob) return null;
+
+  const now = new Date();
+  let years = now.getFullYear() - dob.getFullYear();
+  let months = now.getMonth() - dob.getMonth();
+  if (months < 0 || (months === 0 && now.getDate() < dob.getDate())) {
+    years--;
+    months += 12;
+  }
+  return { years, months };
+});
+
 
 const ChildModel = mongoose.model('Child', childSchema);
 
