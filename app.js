@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require("express");
 const http = require("http");
 const fs = require('fs');
+const cors = require("cors")
+
 
 
 const userRouterV1 = require('./routes/userRouteV1');
@@ -21,6 +23,7 @@ connectMongoDb(process.env.MONGO_CONNECTION_URL)
   .then((e) => console.log("Mongodb connected"));
 
 app.use(express.json());
+app.use(cors())
 
 app.use((req, res, next) => {
   const msg = `${req.method} \ ${req.url} ${req.hostname} ${Date.now()}\n`;

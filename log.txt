@@ -8,3 +8,5 @@ GET  /api/v1/child/664af1ee8f272a4c9c09c679 localhost 1716187655091
 GET  /api/v1/child/664af1ee8f272a4c9c09c679 localhost 1716189308610
 GET  /api/v1/child/664af1ee8f272a4c9c09c679 localhost 1716189359780
 POST  /api/v1/user/signup localhost 1716189467202
+GET  /api/v1/child/664af1ee8f272a4c9c09c679 localhost 1716629131269
+POST  /api/v1/child/addChild localhost 1716629177086
