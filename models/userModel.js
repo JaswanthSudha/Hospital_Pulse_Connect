@@ -1,25 +1,24 @@
 const mongoose = require("mongoose");
-const ChildModel = require("./childModel");
 
 const userSchema = mongoose.Schema({
-  firstName:{
+  firstName: {
     type: String,
     require: true
   },
-  lastName:{
+  lastName: {
     type: String,
     require: true
   },
-  gender:{
+  gender: {
     type: String,
-    enum:["male","female", "other"],
+    enum: ["male", "female", "other"],
     require: true
   },
-  dateOfBirth:{
+  dateOfBirth: {
     type: Date,
     require: true
   },
-  phoneNumber:{
+  phoneNumber: {
     type: Number,
     require: true
   },
@@ -32,16 +31,12 @@ const userSchema = mongoose.Schema({
     enum: ['single', 'married', 'divorced', 'widowed', 'other'],
     required: true
   },
-  state:{
-    type:String,
-    required:true
+  state: {
+    type: String,
+    required: true
   },
-  childList:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "ChildModel"
-  }]
 
-},{timestamps:true});
+}, { timestamps: true });
 
 
 const UserModel = mongoose.model("user", userSchema);

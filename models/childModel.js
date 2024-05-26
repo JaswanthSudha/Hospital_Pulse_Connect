@@ -9,9 +9,8 @@ const childSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  parentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "UserModel",
+  userId: {
+    type: String,
     required: true,
   },
   dateOfBirth: {
@@ -23,14 +22,14 @@ const childSchema = new mongoose.Schema({
     enum: ['male', 'female', 'other'],
     required: true
   },
-  
+
 }, {
-  timestamps:true,
+  timestamps: true,
   toJSON: { virtuals: true }, // Include virtuals when converting to JSON
   toObject: { virtuals: true } // Include virtuals when converting to objects
 });
 // Virtual property for age in years and months
-childSchema.virtual('age').get(function() {
+childSchema.virtual('age').get(function () {
   const dob = this.dateOfBirth;
   if (!dob) return null;
 

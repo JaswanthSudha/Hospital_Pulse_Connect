@@ -11,12 +11,12 @@ const ChildModel = require('../models/childModel');
 
 
 async function signup(req, res) {
-  const { password, phoneNumber, firstName, lastName, gender, dateOfBirth,maritalStatus, state} = req.body;
+  const { password, phoneNumber, firstName, lastName, gender, dateOfBirth, maritalStatus, state } = req.body;
   // Define required fields
-  const requiredFields = ["password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
+  const requiredFields = ["role", "password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
 
   // Function to validate the request body
-   function validateRequestBody(reqBody, requiredFields) {
+  function validateRequestBody(reqBody, requiredFields) {
     return requiredFields.filter(field => {
       if (typeof reqBody[field] === 'number') {
         return isNaN(reqBody[field]);
@@ -75,14 +75,14 @@ async function login(req, res) {
   return res.status(200).json({ token });
 }
 
-async function userDetail(req, res){
-  if(!req.body.user) return res.status(401).json({ msg: "Unauthorized"});
-  return res.json({data: req.body.user});
+async function userDetail(req, res) {
+  if (!req.body.user) return res.status(401).json({ msg: "Unauthorized" });
+  return res.json({ data: req.body.user });
 }
 
 
 
-module.exports ={
+module.exports = {
   signup,
   login,
   userDetail
