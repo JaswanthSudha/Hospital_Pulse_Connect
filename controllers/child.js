@@ -50,8 +50,30 @@ async function childDetail(req, res) {
   const child = await ChildModel.findOne({ _id: req.params.id });
   return res.status(200).json({ data: child });
 }
+const getChildByParentId = async (req, res) => {
+  try {
+    console.log("getChildByParent")
+    const userId = req.body.user._id
+    const children = await ChildModel.find({ userId })
+    const numberOfChildren = children.length
+    if (numberOfChildren == 0) {
+      return res.status(200).json({ "message": "Parent Has No Children" })
+
+    }
+    if (!children) {
+      return res.status(500).json({ "message": "Children Not Found" })
+    }
+    res.status(200).json(children)
+  }
+  catch (error) {
+    res.status(500).json(error)
+
+  }
+
+}
 
 module.exports = {
   addChild,
-  childDetail
+  childDetail,
+  getChildByParentId
 };
