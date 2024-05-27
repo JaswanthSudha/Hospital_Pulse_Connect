@@ -184,3 +184,13 @@ POST  /api/v1/subscription localhost 1716793004543
 POST  /api/v1/subscription localhost 1716793024152
 POST  /api/v1/subscription localhost 1716793148977
 GET  /api/v1/subscription localhost 1716793206489
+POST  /api/v1/document localhost 1716793681278
+POST  /api/v1/document localhost 1716793705833
+POST  /api/v1/document localhost 1716793762981
+POST  /api/v1/document localhost 1716793771125
+POST  /api/v1/document localhost 1716793805581
+POST  /api/v1/document localhost 1716793875458
+POST  /api/v1/document localhost 1716793878789
+POST  /api/v1/document localhost 1716793881007
+POST  /api/v1/document localhost 1716793911373
+POST  /api/v1/document localhost 1716794007633

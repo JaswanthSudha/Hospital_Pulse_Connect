@@ -1,7 +1,10 @@
 const documentModel = require("../models/documentModel")
 const createDocument = async (req, res) => {
     try {
+
         const userId = req.body.user._id
+        console.log(userId)
+        console.log(req.file)
         const filename = req.file.originalname
         const data = req.file.buffer
         const contentType = req.file.mimetype
