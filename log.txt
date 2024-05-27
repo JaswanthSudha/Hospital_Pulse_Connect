@@ -226,3 +226,12 @@ POST  /api/v1/appointment localhost 1716804849516
 PATCH  /api/v1/appointment/66545cebdb19f73966792d8b localhost 1716804918758
 GET  /api/v1/appointment/future localhost 1716804928503
 GET  /api/v1/appointment/complete localhost 1716804933993
+POST  /api/v1/user/signup localhost 1716821909659
+POST  /api/v1/user/signup localhost 1716821923016
+POST  /api/v1/user/signup localhost 1716821937022
+POST  /api/v1/user/signup localhost 1716822028421
+POST  /api/v1/user/signup localhost 1716822034791
+POST  /api/v1/user/signup localhost 1716822038187
+POST  /api/v1/user/login localhost 1716822235993
+POST  /api/v1/user/login localhost 1716822322199
+POST  /api/v1/user/login localhost 1716822349667

@@ -11,9 +11,9 @@ const ChildModel = require('../models/childModel');
 
 
 async function signup(req, res) {
-  const { password, phoneNumber, firstName, lastName, gender, dateOfBirth, maritalStatus, state } = req.body;
+  const { userName, password, phoneNumber, firstName, lastName, gender, dateOfBirth, maritalStatus, state } = req.body;
   // Define required fields
-  const requiredFields = ["password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
+  const requiredFields = ["userName", "password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
 
   // Function to validate the request body
   function validateRequestBody(reqBody, requiredFields) {
@@ -34,13 +34,15 @@ async function signup(req, res) {
     });
   }
   let user = await UserModel.findOne({ phoneNumber });
+  let user1 = await UserModel.findOne({ userName })
 
   if (user) return res.status(404).json({ msg: "This phoneNumber is already used" });
-
+  if (user1) return res.status(404).json({ "msg": "This userName is already used" })
   try {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
     user = await UserModel.create({
+      userName: userName.toLowerCase(),
       phoneNumber: phoneNumber,
       password: hashedPassword,
       firstName: firstName,
@@ -56,13 +58,19 @@ async function signup(req, res) {
 
   const token = createToken(user);
 
-  return res.status(200).json({ msg: 'User created', token });
+  return res.status(200).json({ msg: 'User created', token, userName, "userId": user._id });
 
 }
 
 async function login(req, res) {
-  const { phoneNumber, password } = req.body;
-  const user = await UserModel.findOne({ phoneNumber });
+  const { userName, password } = req.body;
+  if (!userName) {
+    return res.status(404).json({ "msg": "Enter UserName" })
+  }
+  if (!password) {
+    return res.status(404).json({ "msg": "Enter Password" })
+  }
+  const user = await UserModel.findOne({ "userName": userName.toLowerCase() });
 
   if (!user) return res.status(404).json({ msg: 'User not found with this phoneNumber' });
 
@@ -72,7 +80,7 @@ async function login(req, res) {
   if (!comparPassword) return res.status(401).json({ msg: 'Wrong password' });
 
   const token = createToken(user);
-  return res.status(200).json({ token });
+  return res.status(200).json({ token, userName, "userId": user._id });
 }
 
 async function userDetail(req, res) {
