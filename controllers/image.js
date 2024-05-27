@@ -1,5 +1,6 @@
 const imageModel = require("../models/image")
 const reportModel = require("../models/reportModel")
+const mlPrediction = require("./ml")
 const uploadImage = async (req, res) => {
     try {
         //childId should be given while uploading the image
@@ -16,7 +17,8 @@ const uploadImage = async (req, res) => {
             return res.status(500).json("image not uploaded")
         }
         // console.log("Buffer", req.file)
-        const report = await reportModel.create({ value: 1, userId, childId })
+        const reportValue = await mlPrediction.prediction(image.data)
+        const report = await reportModel.create({ value: reportValue, userId, childId })
         if (!report) {
             return res.status(500).json("report is not generated")
         }

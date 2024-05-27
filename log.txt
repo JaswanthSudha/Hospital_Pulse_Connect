@@ -235,3 +235,17 @@ POST  /api/v1/user/signup localhost 1716822038187
 POST  /api/v1/user/login localhost 1716822235993
 POST  /api/v1/user/login localhost 1716822322199
 POST  /api/v1/user/login localhost 1716822349667
+POST  /api/v1/image/upload localhost 1716826748178
+POST  /api/v1/image/upload localhost 1716826787940
+POST  /api/v1/image/upload localhost 1716826911049
+POST  /api/v1/image/upload localhost 1716826929020
+POST  /api/v1/image/upload localhost 1716827003022
+POST  /api/v1/image/upload localhost 1716827086960
+POST  /api/v1/image/upload localhost 1716827226537
+POST  /api/v1/image/upload localhost 1716827234584
+POST  /api/v1/image/upload localhost 1716827281943
+POST  /api/v1/image/upload localhost 1716827310846
+POST  /api/v1/image/upload localhost 1716827366358
+POST  /api/v1/image/upload localhost 1716827401492
+POST  /api/v1/image/upload localhost 1716827451598
+POST  /api/v1/image/upload localhost 1716827481826
