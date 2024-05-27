@@ -52,7 +52,6 @@ async function childDetail(req, res) {
 }
 const getChildByParentId = async (req, res) => {
   try {
-    console.log("getChildByParent")
     const userId = req.body.user._id
     const children = await ChildModel.find({ userId })
     const numberOfChildren = children.length
