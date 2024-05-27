@@ -25,7 +25,7 @@ const updatePayment = async (req, res) => {
     try {
         const userId = req.body.user._id
         const updatedPayment = await paymentModel.findOneAndUpdate({ userId }, { ...req.body })
-        res.status(500).json(updatePayment)
+        res.status(500).json(updatedPayment)
     }
     catch (error) {
         res.status(500).json(error)
