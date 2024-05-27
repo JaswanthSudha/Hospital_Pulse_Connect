@@ -13,7 +13,7 @@ const ChildModel = require('../models/childModel');
 async function signup(req, res) {
   const { password, phoneNumber, firstName, lastName, gender, dateOfBirth, maritalStatus, state } = req.body;
   // Define required fields
-  const requiredFields = ["role", "password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
+  const requiredFields = ["password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
 
   // Function to validate the request body
   function validateRequestBody(reqBody, requiredFields) {

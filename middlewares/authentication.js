@@ -31,7 +31,7 @@ const restrictUserWithoutToken = async (req, res, next) => {
     const userData = await UserModel.findOne({ _id: userPayload.userId });
     if (!userData) return res.json({ msg: "You are not authorized user" })
     req.body.user = userData;
-    console.log("reqbodyuserdata", req.body.user);
+    // console.log("reqbodyuserdata", req.body.user);
   } catch (error) {
     return res.json({ msg: `error: ${error}` })
   }

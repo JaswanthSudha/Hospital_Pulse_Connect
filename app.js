@@ -14,6 +14,8 @@ const imageRouterV1 = require("./routes/imageRouteV1")
 const appointmentRouterV1 = require("./routes/appointmentRouteV1")
 const doctorRouterV1 = require("./routes/doctorRouteV1")
 const documentRouterV1 = require("./routes/documentRouterV1")
+const payementRouterV1 = require("./routes/paymentRouteV1")
+const subscriptionRouterV1 = require("./routes/subscriptionRouterV1")
 
 const { checkForAuthenticationToken } = require('./middlewares/authentication');
 
@@ -47,6 +49,8 @@ app.use("/api/v1/image", imageRouterV1)
 app.use("/api/v1/appointment", appointmentRouterV1)
 app.use("/api/v1/doctor", doctorRouterV1)
 app.use("/api/v1/document", documentRouterV1)
+app.use("/api/v1/payment", payementRouterV1)
+app.use("/api/v1/subscription", subscriptionRouterV1)
 
 
 
