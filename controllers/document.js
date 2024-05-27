@@ -1,7 +1,7 @@
 const documentModel = require("../models/documentModel")
 const createDocument = async (req, res) => {
     try {
-        const userId = "6652b3681c1e413b68ce83f0";
+        const userId = req.body.user._id
         const filename = req.file.originalname
         const data = req.file.buffer
         const contentType = req.file.mimetype
@@ -30,7 +30,7 @@ const getDocumentById = async (req, res) => {
 }
 const getAllDocuments = async (req, res) => {
     try {
-        const userId = "6652b3681c1e413b68ce83f0";
+        const userId = req.body.user._id;
         const documents = await documentModel.find({ userId })
         // const { data, __docs } = documents;
         res.status(200).json(documents)
