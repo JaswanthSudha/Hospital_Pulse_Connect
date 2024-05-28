@@ -11,9 +11,9 @@ const ChildModel = require('../models/childModel');
 
 
 async function signup(req, res) {
-  const { userName, password, phoneNumber, firstName, lastName, gender, dateOfBirth, maritalStatus, state } = req.body;
+  const { email, userName, password, phoneNumber, gender, dateOfBirth, maritalStatus, state } = req.body;
   // Define required fields
-  const requiredFields = ["userName", "password", "phoneNumber", "firstName", "lastName", "gender", "dateOfBirth", "maritalStatus", "state"];
+  const requiredFields = ["userName", "email", "password", "phoneNumber", "gender", "dateOfBirth", "maritalStatus", "state"];
 
   // Function to validate the request body
   function validateRequestBody(reqBody, requiredFields) {
@@ -42,11 +42,10 @@ async function signup(req, res) {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
     user = await UserModel.create({
+      email: email,
       userName: userName.toLowerCase(),
       phoneNumber: phoneNumber,
       password: hashedPassword,
-      firstName: firstName,
-      lastName: lastName,
       gender: gender,
       dateOfBirth: new Date(dateOfBirth), //  dateOfBirth is a string like '27 Oct 2004' 
       maritalStatus: maritalStatus,

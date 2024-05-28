@@ -4,6 +4,6 @@ const { createDocument, getAllDocuments, getDocumentById } = require("../control
 const { upload } = require("../middlewares/imageUpload")
 const { restrictUserWithoutToken } = require("../middlewares/authentication")
 router.post("/", upload.single("document"), restrictUserWithoutToken, createDocument)
-router.get("/", restrictUserWithoutToken, getAllDocuments)
+router.get("/", getAllDocuments)
 router.get("/:id", restrictUserWithoutToken, getDocumentById)
 module.exports = router;
