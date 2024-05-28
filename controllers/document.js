@@ -31,7 +31,7 @@ const getDocumentById = async (req, res) => {
 const getAllDocuments = async (req, res) => {
     try {
         const userId = req.body.user._id;
-        const documents = await documentModel.find({ userId })
+        const documents = await documentModel.find({})
         // const { data, __docs } = documents;
         res.status(200).json(documents)
     }
