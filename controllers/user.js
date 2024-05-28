@@ -87,11 +87,25 @@ async function userDetail(req, res) {
   if (!req.body.user) return res.status(401).json({ msg: "Unauthorized" });
   return res.json({ data: req.body.user });
 }
+async function userDetails(req, res) {
+  try {
+    const users = await UserModel.find({})
+    if (!users) {
+      return res.status(401).json({ "msg": "Users Not Found" })
+    }
+    res.status(200).json(users)
+
+  }
+  catch (error) {
+    res.status(500).json(error)
+  }
+}
 
 
 
 module.exports = {
   signup,
   login,
-  userDetail
+  userDetail,
+  userDetails
 };

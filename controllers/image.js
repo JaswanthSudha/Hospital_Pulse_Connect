@@ -3,12 +3,10 @@ const reportModel = require("../models/reportModel")
 const mlPrediction = require("./ml")
 const uploadImage = async (req, res) => {
     try {
-        //childId should be given while uploading the image
-        //user id will be get from the login
         const { childId } = req.body;
-        // console.log("file", req.file)
-        // console.log(req.body.user)
         const userId = req.body.user._id
+        // console.log(userId)
+        // console.log(childId)
         if (!req.file) {
             return res.status(500).json({ "message": "Image not Uploaded" })
         }
