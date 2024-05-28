@@ -36,7 +36,7 @@ const loadModel = async () => {
 
     try {
         const model = await tf.loadLayersModel(nodeBundleResourceIO(modelJsonPath, weightFiles));
-        model.summary();
+        // model.summary();
         return model
     } catch (error) {
         console.error('Error loading the model:', error);
