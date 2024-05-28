@@ -52,8 +52,8 @@ async function childDetail(req, res) {
 }
 const getChildByParentId = async (req, res) => {
   try {
-    const userId = req.body.user._id
-    const children = await ChildModel.find({ userId })
+    const { id } = req.params
+    const children = await ChildModel.find({ userId: id })
     const numberOfChildren = children.length
     if (numberOfChildren == 0) {
       return res.status(200).json({ "message": "Parent Has No Children" })

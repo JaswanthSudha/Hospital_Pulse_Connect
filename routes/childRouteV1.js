@@ -5,7 +5,7 @@ const { restrictUserWithoutToken } = require('../middlewares/authentication');
 const router = Router();
 
 router.post('/addChild', restrictUserWithoutToken, addChild);
-router.get("/", restrictUserWithoutToken, getChildByParentId)
+router.get("/parent/:id", getChildByParentId)
 router.get('/:id', childDetail);
 
 
