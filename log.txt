@@ -261,3 +261,9 @@ POST  /api/v1/image/upload localhost 1716874674133
 GET  /api/v1/user localhost 1716877231492
 GET  /api/v1/child/parent/66546350363d584e84a6974e localhost 1716878449321
 GET  /api/v1/child/parent/66546350363d584e84a6974e localhost 1716878478599
+GET  /api/v1/child/rootChild localhost 1716880656074
+GET  /api/v1/child/rootChild localhost 1716880700437
+GET  /api/v1/child/rootChild localhost 1716880713151
+GET  /api/v1/child/rootChild localhost 1716880718480
+GET  /api/v1/child/rootChild localhost 1716880747611
+GET  /api/v1/child/rootChild localhost 1716880866887

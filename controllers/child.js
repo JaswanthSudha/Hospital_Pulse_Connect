@@ -70,9 +70,26 @@ const getChildByParentId = async (req, res) => {
   }
 
 }
+const getRootChild = async (req, res) => {
+  try {
+    const userId = req.body.user._id
+    const children = await ChildModel.find({ userId })
+    if (!children) {
+      return res.status(401).json({ "message": "Children is Not Created for the user" })
+    }
+    res.status(200).json(children)
+
+
+  }
+  catch (error) {
+    res.status(500).json(error)
+
+  }
+}
 
 module.exports = {
   addChild,
   childDetail,
-  getChildByParentId
+  getChildByParentId,
+  getRootChild
 };
