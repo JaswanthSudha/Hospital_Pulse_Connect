@@ -9,7 +9,7 @@ const createNewAppointment = async (req, res) => {
         if (!doctor.available) {
             return res.status(400).json({ "message": "Doctor is not Available" })
         }
-        const appointment = await appointmentModel.create({ doctorId, userId, time, date })
+        const appointment = await appointmentModel.create({ doctorId, userId, time, date, doctorName: doctor.name, userName: req.body.user.userName })
         res.status(200).json(appointment)
     }
     catch (error) {

@@ -1,15 +1,8 @@
 const bcrypt = require('bcrypt');
 
 const UserModel = require('../models/userModel');
-const childModel = require('../models/childModel');
-
-const { createToken } = require("../services/authentication");
-const ChildModel = require('../models/childModel');
-
-
-
-
-
+const { transporter } = require("../services/nodeMailer")
+const { createToken, validateToken } = require("../services/authentication");
 async function signup(req, res) {
   const { email, userName, password, phoneNumber, gender, dateOfBirth, maritalStatus, state } = req.body;
   // Define required fields
@@ -55,10 +48,35 @@ async function signup(req, res) {
     return res.status(500).json({ msg: 'problem to create user' });
   }
 
-  const token = createToken(user);
+  // const token = createToken(user);
+  // const url = `http://localhost:4000/api/v1/user/${token}`
+  // await transporter.sendMail({
+  //   to: user.email,
+  //   subject: 'Verify your email',
+  //   html: `Click <a href="${url}">here</a> to verify your email.`
+  // })
 
   return res.status(200).json({ msg: 'User created', token, userName, "userId": user._id });
 
+}
+const verifyEmail = async (req, res) => {
+  console.log("Hello")
+  try {
+    const { token } = req.params
+    const payload = validateToken(token)
+    const user = await UserModel.findById({ _id: payload.userId })
+    if (!user) {
+      return res.status(400).send('Invalid token.');
+    }
+    user.verified = true
+    await user.save()
+    res.send("Email VerifiedSuccessfully")
+
+  }
+  catch (error) {
+    res.send("Email Verification Failed")
+
+  }
 }
 
 async function login(req, res) {
@@ -100,11 +118,10 @@ async function userDetails(req, res) {
   }
 }
 
-
-
 module.exports = {
   signup,
   login,
   userDetail,
-  userDetails
+  userDetails,
+  verifyEmail
 };

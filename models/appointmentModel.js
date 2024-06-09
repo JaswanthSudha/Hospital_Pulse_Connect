@@ -22,6 +22,14 @@ const AppointmentSchema = new mongoose.Schema({
     state: {
         type: Boolean,
         default: false
+    },
+    doctorName: {
+        type: String,
+        required: true
+    },
+    userName: {
+        type: String,
+        required: true
     }
 });
 
